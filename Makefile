@@ -5,8 +5,9 @@ OBJ_DIR :=	objects
 vpath %.c	sources			\
 			sources/parse	\
 			sources/error	\
+			sources/debug	\
 
-SRC		:=	main.c err.c parse_map.c parse_map_utils.c
+SRC		:=	main.c error.c parse.c parse_utils.c debug.c validate_elements.c elements.c checklist.c
 
 OBJS	:=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 INCLS   :=	$(INC_DIR)
