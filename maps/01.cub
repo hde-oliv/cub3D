@@ -1,18 +1,18 @@
 F 122,122,122
-NO ./.xpm/no_redbrick.xpm
-SO ./.xpm/so_redbrick.xpm
+NO ./maps/xpm/no_redbrick.xpm
+SO ./maps/xpm/so_redbrick.xpm
 
 
-EA ./.xpm/ea_redbrick.xpm
-
-
-
+EA ./maps/xpm/ea_redbrick.xpm
 
 
 
 
 
-WE                                                ./.xpm/we_redbrick.xpm
+
+
+
+WE                                                ./maps/xpm/we_redbrick.xpm
                                                                      C 255,200,160
 
 11111111111111111
