@@ -10,28 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "cub3D.h"
-
-void	err(const char *err_func)
-{
-	printf("Error\n");
-	perror(err_func);
-	exit(1);
-}
 
 int	main(int argc, char *argv[])
 {
+	t_game	game;
+	t_map	map;
 	int		map_fd;
 
 	if (argc != 2)
-		err("main");
-	/* if (!is_map(argv[1])) */
-	/* 	err("is_map"); */
+		error("main");
+	if (!is_map(argv[1]))
+		error("is_map");
 	map_fd = open(argv[1], O_RDONLY);
 	if (map_fd == -1)
-		err("open");
-	/* game.map = parse_map(map_fd); */
+		error("open");
+	(void)game;
+	game.map = &map;
+	parse_map(&game, map_fd);
 	/* create_game(&game); */
 	/* run_game(&game); */
 	/* mlx_loop(game.mlx); */
