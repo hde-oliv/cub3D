@@ -15,3 +15,16 @@ void	print_map(t_list *lines)
 	}
 	printf("\n--------------\n");
 }
+
+void 	print_rows(char **rows)
+{
+	int	i;
+
+	i = 0;
+	printf("ROWS ----------\n\n");
+	while (rows[i])
+	{
+		printf("%s\n", rows[i++]);
+	}
+	printf("\n---------------\n");
+}

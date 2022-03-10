@@ -58,6 +58,15 @@ int		strcchr(char *s, char c);
 int		validate_elements(t_map *map);
 int		double_array_size(char **array);
 
+// Validate map
+int		validate_map(t_map *map);
+
+// Create rows
+int		find_longest_line(t_list *lines);
+char	sub_space_for_plus(unsigned int i, char c);
+char	*string_create(char c, int size);
+void	create_rows(t_map *map, int l_line, int q_line);
+
 // Element
 int		extract_element(t_map *map, char *elem, char *line, int *checklist);
 int		check_for_elements_and_store(t_map *map, char *line, int *checklist);
@@ -79,4 +88,5 @@ void	invalid_map(void *ptr, char *chr);
 
 void	print_element(char **tmp);
 void	print_map(t_list *lines);
+void 	print_rows(char **rows);
 #endif

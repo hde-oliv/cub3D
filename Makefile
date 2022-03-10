@@ -7,7 +7,7 @@ vpath %.c	sources			\
 			sources/error	\
 			sources/debug	\
 
-SRC		:=	main.c error.c parse.c parse_utils.c debug.c validate_elements.c elements.c checklist.c
+SRC		:=	main.c error.c parse.c parse_utils.c debug.c validate_elements.c elements.c checklist.c validate_map.c create_rows.c
 
 OBJS	:=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 INCLS   :=	$(INC_DIR)
