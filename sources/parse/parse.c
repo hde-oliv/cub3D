@@ -39,6 +39,8 @@ void	parse_map(t_game *game, int fd)
 		error("fetch_elements");
 	if (!fetch_map(game->map, fd))
 		error("fetch_map");
-
+	if (!validate_elements(game->map))
+		error("validate_elements");
+	if (!validate_map(game->map))
+		error("validate_map");
 }
-

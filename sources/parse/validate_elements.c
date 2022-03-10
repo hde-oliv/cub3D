@@ -43,7 +43,9 @@ int validate_elements(t_map *map)
 	if (fd == -1)
 		error("validate_elements");
 	rgb = ft_split(map->c_color, ',');
-	if (double_array_size(rgb) != 3 && !is_rgb_bounded(rgb))
+	if (double_array_size(rgb) != 3)
+		error("validate_elements");
+	if (!is_rgb_bounded(rgb))
 		error("validate_elements");
 	return (1);
 }

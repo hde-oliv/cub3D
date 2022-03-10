@@ -23,6 +23,8 @@ static void cerror(const char *function)
 		printf("fetch_elements: Missing or invalid map element\n");
 	else if (!ft_strncmp(function, "fetch_map", 9))
 		printf("fetch_map: Missing map\n");
+	else if (!ft_strncmp(function, "validate_elements", 17))
+		printf("validate_elements: Invalid color\n");
 }
 
 void	error(const char *function)
