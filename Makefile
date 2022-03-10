@@ -1,13 +1,15 @@
-SRC		:=	main.c
-
 SRC_DIR :=	sources
 INC_DIR :=	headers
 OBJ_DIR :=	objects
 
-INCLS   :=	$(INC_DIR)
+vpath %.c	sources			\
+			sources/parse	\
+			sources/error	\
 
-SRCS	:=	$(addprefix $(SRC_DIR)/,$(SRC))
-OBJS	:=	$(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+SRC		:=	main.c err.c parse_map.c parse_map_utils.c
+
+OBJS	:=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
+INCLS   :=	$(INC_DIR)
 
 CC		:=	gcc
 
@@ -28,7 +30,7 @@ LFT_DIR	:=	libft
 
 all:		obj mlx lft $(NAME)
 
-$(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: %.c
 			$(CC) $(CFLAGS) $(TFLAGS) -c $< -o $@ $(IFLAGS)/$(INCLS) $(IFLAGS)/$(MLX_DIR) $(IFLAGS)/$(LFT_DIR)
 
 $(NAME):	$(OBJS)
