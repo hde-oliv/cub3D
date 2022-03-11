@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_map.c                                        :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 13:23:37 by hde-oliv          #+#    #+#             */
-/*   Updated: 2021/09/02 16:57:35 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/03/11 15:10:09 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ int	fetch_map(t_map *map, int fd)
 	lines = NULL;
 	while (get_next_line(fd, &line) == 1)
 	{
-		if (skip && (ft_strlen(line) == 0 || !ft_strncmp(line, " ", ft_strlen(line))))
+		if (skip && (ft_strlen(line) == 0 || \
+					!ft_strncmp(line, " ", ft_strlen(line))))
 			continue ;
 		skip = 0;
 		ft_lstadd_back(&lines, ft_lstnew(line));
 	}
-	print_map(lines);
 	map->lines = lines;
 	return (1);
 }

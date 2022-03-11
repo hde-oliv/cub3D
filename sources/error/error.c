@@ -6,14 +6,14 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 13:23:37 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/03/10 17:24:26 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/03/11 15:10:21 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 #include "libft.h"
 
-static void cerror(const char *function)
+static void	cerror(const char *function)
 {
 	if (!ft_strncmp(function, "main", 5))
 		printf("main: Invalid number of arguments\n");

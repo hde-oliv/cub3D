@@ -1,85 +1,84 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate_map.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/11 15:10:14 by hde-oliv          #+#    #+#             */
+/*   Updated: 2022/03/11 15:10:15 by hde-oliv         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
-#include "libft.h"
 
-int	check_for_walls(char **rows, int i, int j, int rows_size)
+static int	validate_boundaries(char **rows, int rows_size, int row_size)
 {
-	if (rows[i][j + 1] != '\0' && rows[i][j + 1] != '+' && rows[i][j + 1] != '1')
+	int	i;
+
+	i = 0;
+	if (!check_for_plus_and_wall(rows[0]))
+		return (0);
+	if (!check_for_plus_and_wall(rows[rows_size - 1]))
+		return (0);
+	while (i < rows_size)
 	{
-		printf("Open on right of %d,%d\n", i, j);
-		return (1);
+		if (rows[i][0] != '+' && rows[i][0] != '1')
+			return (0);
+		i++;
 	}
-	if (j != 0)
+	i = 0;
+	while (i < rows_size)
 	{
-		if (rows[i][j - 1] != '+' && rows[i][j - 1] != '1')
-		{
-			printf("Open on left of %d,%d\n", i, j);
-			return (1);
-		}
+		if (rows[i][row_size - 1] != '+' && rows[i][row_size - 1] != '1')
+			return (0);
+		i++;
 	}
-	if (i != 0)
-	{
-		if (rows[i - 1][j] != '+' && rows[i - 1][j] != '1')
-		{
-			printf("Open on top of %d,%d\n", i, j);
-			return (1);
-		}
-	}
-	if (i != (rows_size - 1))
-	{
-		if (rows[i + 1][j] != '+' && rows[i + 1][j] != '1')
-		{
-			printf("Open on bottom of %d,%d\n", i, j);
-			return (1);
-		}
-	}
-	return (0);
+	return (1);
 }
 
-int	create_count(char **rows, int i, int j, int rows_size)
+static int	validate_player(char **rows)
 {
-	int	count;
+	int	found;
+	int	i;
+	int	j;
 
-	count = 0;
-	if (rows[i][j + 1] == '1')
-		count |= 2;
-	if (j != 0 && rows[i][j - 1] == '1')
-		count |= 4;
-	if (i != 0 && rows[i - 1][j] == '1')
-		count |= 8;
-	if (i != (rows_size - 1) && rows[i + 1][j] == '1')
-		count |= 16;
-	return (count);
-}
-
-// 2 => East
-// 4 => West
-// 8 => North
-// 16 => South
-int	check_for_internal_holes(char **rows, int i, int j, int rows_size)
-{
-	int	count;
-
-	count = create_count(rows, i, j, rows_size);
-	printf("Called for %d,%d\n", i, j);
-	if (count != 0 && count != 2 && count != 4 && count != 8 && count != 16)
+	i = 0;
+	j = 0;
+	found = 0;
+	while (rows[i])
 	{
-		if (count & 2 && count & 8)
-			if (rows[i - 1][j + 1] != '1')
-				return (1);
-		if (count & 4 && count & 8)
-			if (rows[i - 1][j - 1] != '1')
-				return (1);
-		if (count & 2 && count & 16)
-			if (rows[i + 1][j + 1] != '1')
-				return (1);
-		if (count & 4 && count & 16)
-			if (rows[i + 1][j - 1] != '1')
-				return (1);
+		j = 0;
+		while (rows[i][j])
+		{
+			if (ft_strchr("NWSE", rows[i][j]))
+				found++;
+			j++;
+		}
+		i++;
 	}
-	return (0);
+	return (found == 1);
 }
 
-int	validate_plus_sign(char **rows)
+static int	validate_unknown_elements(t_list *lines)
+{
+	int	j;
+
+	while (lines)
+	{
+		j = 0;
+		while (((char *)(lines->content))[j])
+		{
+			if (!ft_strchr("10 NWSE", ((char *)(lines->content))[j]))
+				return (0);
+			j++;
+		}
+		lines = lines->next;
+	}
+	return (1);
+}
+
+static int	validate_plus_sign(char **rows)
 {
 	int	i;
 	int	j;
@@ -95,8 +94,9 @@ int	validate_plus_sign(char **rows)
 			{
 				if (check_for_walls(rows, i, j, double_array_size(rows)))
 					return (0);
-				/* if (check_for_internal_holes(rows, i, j, double_array_size(rows))) */
-				/* 	return (0); */
+				if (check_for_internal_holes(rows, i, j, \
+											double_array_size(rows)))
+					return (0);
 			}
 			j++;
 		}
@@ -110,11 +110,20 @@ int	validate_map(t_map *map)
 	int	l_line;
 	int	q_line;
 
+	if (map->lines == NULL)
+		error("validate_map");
 	l_line = find_longest_line(map->lines);
 	q_line = ft_lstsize(map->lines);
+	if (l_line < 3 || q_line < 3)
+		error("validate_map");
+	if (!validate_unknown_elements(map->lines))
+		error("validate_map");
 	create_rows(map, l_line, q_line);
-	print_rows(map->rows);
 	if (!validate_plus_sign(map->rows))
+		error("validate_map");
+	if (!validate_boundaries(map->rows, double_array_size(map->rows), l_line))
+		error("validate_map");
+	if (!validate_player(map->rows))
 		error("validate_map");
 	return (1);
 }

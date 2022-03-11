@@ -6,7 +6,7 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 13:23:37 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/03/10 17:24:26 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/03/11 15:10:18 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,7 @@ int	main(int argc, char *argv[])
 	map_fd = open(argv[1], O_RDONLY);
 	if (map_fd == -1)
 		error("open");
-	(void)game;
 	game.map = &map;
 	parse_map(&game, map_fd);
-	/* create_game(&game); */
-	/* run_game(&game); */
-	/* mlx_loop(game.mlx); */
 	return (0);
 }

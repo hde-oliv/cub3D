@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_rows.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/11 15:09:58 by hde-oliv          #+#    #+#             */
+/*   Updated: 2022/03/11 15:09:59 by hde-oliv         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 int	find_longest_line(t_list *lines)
@@ -27,7 +39,7 @@ char	sub_space_for_plus(unsigned int i, char c)
 
 char	*string_create(char c, int size)
 {
-	char *str;
+	char	*str;
 
 	str = malloc(size + 1);
 	str[size] = '\0';

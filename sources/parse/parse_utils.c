@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_map_utils.c                                  :+:      :+:    :+:   */
+/*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 13:23:37 by hde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/31 17:34:19 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/03/11 15:10:06 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,4 @@ int	is_map(char *arg)
 	if (dot_location)
 		return (!ft_strncmp(dot_location, ".cub", 4));
 	return (0);
-}
-
-int	strcchr(char *s, char c)
-{
-	while (*s)
-	{
-		if (*s != c)
-			return (0);
-		s++;
-	}
-	return (1);
 }
