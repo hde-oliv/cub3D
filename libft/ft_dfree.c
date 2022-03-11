@@ -12,13 +12,12 @@
 
 #include "libft.h"
 
-void	ft_dfree(char **a, size_t i)
+void	ft_dfree(char **a)
 {
-	while (i > 0)
-	{
-		free(a[i]);
-		i--;
-	}
-	free(a[0]);
-	free(a);
+	char	**pointer;
+
+	pointer = a;
+	while (*a)
+		free(*a++);
+	free(pointer);
 }

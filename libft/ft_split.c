@@ -66,7 +66,7 @@ static char	*snxtwrd(char const *s, char c)
 
 static char	**freeall(char **a, size_t i)
 {
-	ft_dfree(a, i);
+	ft_dfree(a);
 	return (NULL);
 }
 

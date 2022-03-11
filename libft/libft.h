@@ -483,9 +483,8 @@ t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
  * ft_dfree - Frees an allocated array of allocated arrays.
  *
  * @a: Pointer to allocated array of array.
- * @i: How many arrays it has.
  */
-void		ft_dfree(char **a, size_t i);
+void	ft_dfree(char **a);
 
 /**
  * ft_intlen - How many decimal cases a integer has.
