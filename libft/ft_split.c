@@ -64,7 +64,7 @@ static char	*snxtwrd(char const *s, char c)
 		return ((char *) s);
 }
 
-static char	**freeall(char **a, size_t i)
+static char	**freeall(char **a)
 {
 	ft_dfree(a);
 	return (NULL);
@@ -91,7 +91,7 @@ char	**ft_split(char const *s, char c)
 			j++;
 		a[i++] = ft_substr(start, 0, j);
 		if (a[i - 1] == NULL)
-			return (freeall(a, i - 1));
+			return (freeall(a));
 		start = next;
 	}
 	a[i] = NULL;
