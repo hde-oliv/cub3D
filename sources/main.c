@@ -17,7 +17,7 @@ int	main(int argc, char *argv[])
 {
 	static t_game	game;
 	static t_map	map;
-	int		map_fd;
+	int				map_fd;
 
 	if (argc != 2)
 		error(&game, "main");

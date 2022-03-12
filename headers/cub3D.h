@@ -84,6 +84,10 @@ void	create_rows(t_map *map, int l_line, int q_line);
 // Elements
 int		fetch_elements(t_map *map, int fd);
 
+// Checklist
+int		look_checklist(int *checklist, t_element elem);
+int		update_checklist(int *checklist, t_element elem);
+
 //////////////////
 // Error Module //
 //////////////////
@@ -100,5 +104,5 @@ void	free_everything(t_game *game);
 // Debug
 void	print_element(char **tmp);
 void	print_map(t_list *lines);
-void 	print_rows(char **rows);
+void	print_rows(char **rows);
 #endif

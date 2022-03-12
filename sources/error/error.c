@@ -58,4 +58,3 @@ void	error(t_game *game, const char *function)
 	free_everything(game);
 	exit(1);
 }
-

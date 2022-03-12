@@ -23,7 +23,8 @@ int	fetch_map(t_map *map, int fd)
 	lines = NULL;
 	while (get_next_line(fd, &line) == 1)
 	{
-		if (skip && (ft_strlen(line) == 0 || !ft_strncmp(line, " ", ft_strlen(line))))
+		if (skip && (ft_strlen(line) == 0 || \
+					!ft_strncmp(line, " ", ft_strlen(line))))
 		{
 			free(line);
 			continue ;

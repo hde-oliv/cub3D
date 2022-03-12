@@ -13,51 +13,6 @@
 #include "cub3D.h"
 #include "libft.h"
 
-static int	look_checklist(int *checklist, t_element elem)
-{
-	int	n;
-
-	n = 0;
-	if (elem == NO)
-		n = 2;
-	else if (elem == SO)
-		n = 4;
-	else if (elem == EA)
-		n = 8;
-	else if (elem == WE)
-		n = 16;
-	else if (elem == C)
-		n = 32;
-	else if (elem == F)
-		n = 64;
-	if (*checklist & n)
-		return (1);
-	return (0);
-}
-
-static void	update_checklist(int *checklist, t_element elem)
-{
-	int	n_to_update;
-
-	n_to_update = 0;
-	if (elem == NO)
-		n_to_update = 2;
-	else if (elem == SO)
-		n_to_update = 4;
-	else if (elem == EA)
-		n_to_update = 8;
-	else if (elem == WE)
-		n_to_update = 16;
-	else if (elem == C)
-		n_to_update = 32;
-	else if (elem == F)
-		n_to_update = 64;
-	if (*checklist & n_to_update)
-		*checklist |= 1;
-	else
-		*checklist |= n_to_update;
-}
-
 static int	extract_rgb(t_map *map, t_element elem, char *line, int *checklist)
 {
 	char	**tmp;
@@ -80,17 +35,11 @@ static int	extract_rgb(t_map *map, t_element elem, char *line, int *checklist)
 		map->c_color = tmp2;
 	else if (elem == F)
 		map->f_color = tmp2;
-	update_checklist(checklist, elem);
-	return (1);
+	return (update_checklist(checklist, elem));
 }
 
-// Invalid RGB 39
-// Invalid EA 009
-// Invalid NO 008
-// Invalid NO 021
-// Invalid SO 021
-// Invalid WE 021
-static int	extract_element(t_map *map, t_element elem, char *line, int *checklist)
+static int	extract_element(t_map *map, t_element elem, \
+							char *line, int *checklist)
 {
 	char	**tmp;
 	char	*tmp2;
@@ -116,8 +65,7 @@ static int	extract_element(t_map *map, t_element elem, char *line, int *checklis
 		map->e_sprite = tmp2;
 	else if (elem == WE)
 		map->w_sprite = tmp2;
-	update_checklist(checklist, elem);
-	return (1);
+	return (update_checklist(checklist, elem));
 }
 
 static int	check_for_elements_and_store(t_map *map, char *line, int *checklist)

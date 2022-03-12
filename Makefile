@@ -9,7 +9,7 @@ vpath %.c	sources			\
 
 SRC		:=	main.c \
 			error.c \
-			debug.c \
+			debug.c checklist.c \
 			validate_elements.c elements.c validate_map_utils.c \
 			validate_map.c create_rows.c parse.c parse_utils.c \
 

@@ -484,7 +484,7 @@ t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
  *
  * @a: Pointer to allocated array of array.
  */
-void	ft_dfree(char **a);
+void		ft_dfree(char **a);
 
 /**
  * ft_intlen - How many decimal cases a integer has.
