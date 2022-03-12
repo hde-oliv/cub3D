@@ -43,9 +43,21 @@ char	*string_create(char c, int size)
 
 	str = malloc(size + 1);
 	str[size] = '\0';
-	while (size != -1)
+	while (size != 0)
 		str[--size] = c;
 	return (str);
+}
+
+static char	*handle_plus_line(char *str, int diff)
+{
+	char	*plus;
+	char	*ret;
+
+	plus = string_create('+', diff);
+	ret = ft_strjoin(str, plus);
+	free(str);
+	free(plus);
+	return (ret);
 }
 
 void	create_rows(t_map *map, int l_line, int q_line)
@@ -64,7 +76,7 @@ void	create_rows(t_map *map, int l_line, int q_line)
 		str = ft_strmapi(tmp->content, &sub_space_for_plus);
 		diff = l_line - ft_strlen(str);
 		if (diff)
-			str = ft_strjoin(str, string_create('+', diff));
+			str = handle_plus_line(str, diff);
 		map->rows[i++] = str;
 		tmp = tmp->next;
 	}

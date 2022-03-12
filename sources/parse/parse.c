@@ -23,12 +23,15 @@ int	fetch_map(t_map *map, int fd)
 	lines = NULL;
 	while (get_next_line(fd, &line) == 1)
 	{
-		if (skip && (ft_strlen(line) == 0 || \
-					!ft_strncmp(line, " ", ft_strlen(line))))
+		if (skip && (ft_strlen(line) == 0 || !ft_strncmp(line, " ", ft_strlen(line))))
+		{
+			free(line);
 			continue ;
+		}
 		skip = 0;
 		ft_lstadd_back(&lines, ft_lstnew(line));
 	}
+	free(line);
 	map->lines = lines;
 	return (1);
 }
@@ -36,11 +39,12 @@ int	fetch_map(t_map *map, int fd)
 void	parse_map(t_game *game, int fd)
 {
 	if (!fetch_elements(game->map, fd))
-		error("fetch_elements");
+		error(game, "fetch_elements");
 	if (!fetch_map(game->map, fd))
-		error("fetch_map");
+		error(game, "fetch_map");
 	if (!validate_elements(game->map))
-		error("validate_elements");
+		error(game, "validate_elements");
 	if (!validate_map(game->map))
-		error("validate_map");
+		error(game, "validate_map");
+	close(fd);
 }

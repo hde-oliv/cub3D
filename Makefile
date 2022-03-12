@@ -18,7 +18,7 @@ INCLS   :=	$(INC_DIR)
 
 CC		:=	gcc
 
-CFLAGS	+=	-Wall -Wextra -Werror -pedantic
+CFLAGS	+=	-Wall -Wextra -Werror
 IFLAGS	+=	-I.
 LFLAGS	+=	-L.
 TFLAGS	+=	-g3

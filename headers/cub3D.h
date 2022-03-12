@@ -89,7 +89,9 @@ int		fetch_elements(t_map *map, int fd);
 //////////////////
 
 // Error
-void	error(const char *function);
+void	error(t_game *game, const char *function);
+void	clear_gnl(int fd);
+void	free_everything(t_game *game);
 
 //////////////////
 // Debug Module //

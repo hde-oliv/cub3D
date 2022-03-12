@@ -111,19 +111,19 @@ int	validate_map(t_map *map)
 	int	q_line;
 
 	if (map->lines == NULL)
-		error("validate_map");
+		return (0);
 	l_line = find_longest_line(map->lines);
 	q_line = ft_lstsize(map->lines);
 	if (l_line < 3 || q_line < 3)
-		error("validate_map");
+		return (0);
 	if (!validate_unknown_elements(map->lines))
-		error("validate_map");
+		return (0);
 	create_rows(map, l_line, q_line);
 	if (!validate_plus_sign(map->rows))
-		error("validate_map");
+		return (0);
 	if (!validate_boundaries(map->rows, double_array_size(map->rows), l_line))
-		error("validate_map");
+		return (0);
 	if (!validate_player(map->rows))
-		error("validate_map");
+		return (0);
 	return (1);
 }

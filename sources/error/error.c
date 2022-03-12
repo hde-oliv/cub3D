@@ -27,12 +27,35 @@ static void	cerror(const char *function)
 		printf("validate_elements: Invalid color\n");
 }
 
-void	error(const char *function)
+void	clear_gnl(int fd)
+{
+	char	*line;
+
+	while (get_next_line(fd, &line))
+		free(line);
+	free(line);
+}
+
+void	free_everything(t_game *game)
+{
+	free(game->map->c_color);
+	free(game->map->f_color);
+	free(game->map->e_sprite);
+	free(game->map->n_sprite);
+	free(game->map->w_sprite);
+	free(game->map->s_sprite);
+	ft_dfree(game->map->rows);
+	ft_lstclear(&game->map->lines, &free);
+}
+
+void	error(t_game *game, const char *function)
 {
 	printf("Error\n");
 	if (errno != 0)
 		perror(function);
 	else
 		cerror(function);
+	free_everything(game);
 	exit(1);
 }
+

@@ -16,6 +16,8 @@ void	ft_dfree(char **a)
 {
 	char	**pointer;
 
+	if (a == NULL)
+		return ;
 	pointer = a;
 	while (*a)
 		free(*a++);

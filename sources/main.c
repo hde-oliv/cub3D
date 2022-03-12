@@ -11,21 +11,23 @@
 /* ************************************************************************** */
 
 #include "cub3D.h"
+#include "libft.h"
 
 int	main(int argc, char *argv[])
 {
-	t_game	game;
-	t_map	map;
+	static t_game	game;
+	static t_map	map;
 	int		map_fd;
 
 	if (argc != 2)
-		error("main");
+		error(&game, "main");
 	if (!is_map(argv[1]))
-		error("is_map");
+		error(&game, "is_map");
 	map_fd = open(argv[1], O_RDONLY);
 	if (map_fd == -1)
-		error("open");
+		error(&game, "open");
 	game.map = &map;
 	parse_map(&game, map_fd);
+	free_everything(&game);
 	return (0);
 }

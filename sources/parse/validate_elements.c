@@ -60,17 +60,21 @@ static int	validate_rgb(t_map *map)
 	if (count_commas(map->c_color) != 2)
 		return (0);
 	rgb = ft_split(map->c_color, ',');
-	if (double_array_size(rgb) != 3)
+	if (double_array_size(rgb) != 3 || !is_rgb_bounded(rgb))
+	{
+		ft_dfree(rgb);
 		return (0);
-	if (!is_rgb_bounded(rgb))
-		return (0);
+	}
+	ft_dfree(rgb);
 	if (count_commas(map->f_color) != 2)
 		return (0);
 	rgb = ft_split(map->f_color, ',');
-	if (double_array_size(rgb) != 3)
+	if (double_array_size(rgb) != 3 || !is_rgb_bounded(rgb))
+	{
+		ft_dfree(rgb);
 		return (0);
-	if (!is_rgb_bounded(rgb))
-		return (0);
+	}
+	ft_dfree(rgb);
 	return (1);
 }
 
@@ -80,17 +84,21 @@ int	validate_elements(t_map *map)
 
 	fd = open(map->e_sprite, O_RDONLY);
 	if (fd == -1)
-		error("validate_elements");
+		return (0);
+	close(fd);
 	fd = open(map->w_sprite, O_RDONLY);
 	if (fd == -1)
-		error("validate_elements");
+		return (0);
+	close(fd);
 	fd = open(map->n_sprite, O_RDONLY);
 	if (fd == -1)
-		error("validate_elements");
+		return (0);
+	close(fd);
 	fd = open(map->s_sprite, O_RDONLY);
 	if (fd == -1)
-		error("validate_elements");
+		return (0);
+	close(fd);
 	if (!validate_rgb(map))
-		error("validate_elements");
+		return (0);
 	return (1);
 }
