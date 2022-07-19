@@ -16,7 +16,9 @@
 # include <stdio.h>
 # include <errno.h>
 # include <string.h>
+# include <math.h>
 # include "../libft/libft.h"
+# include "../minilibx/mlx.h"
 
 /////////////
 // Structs //
@@ -35,6 +37,12 @@ typedef struct s_map
 	char	**rows;
 	t_list	*lines;
 }	t_map;
+
+typedef struct s_vector
+{
+	double	x;
+	double	y;
+}	t_vector;
 
 typedef struct s_game
 {
