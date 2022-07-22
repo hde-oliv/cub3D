@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 13:23:37 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/03/11 15:10:18 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/21 21:26:54 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,6 @@ int worldMap[mapWidth][mapHeight]=
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-typedef struct s_img
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_img;
-
 int w = 500;
 int h = 500;
 
@@ -72,7 +63,7 @@ void draw_vertical_line(t_img *img, int x, t_vector *start_end, int color)
 		my_mlx_pixel_put(img, x, i, 0x00FF0000);
 }
 
-void game(t_img *img, t_game *game, void *mlx, void *mlx_win)
+void run(t_game *game)
 {
 	static t_vector player;
 	static t_vector direction;
@@ -175,26 +166,37 @@ void game(t_img *img, t_game *game, void *mlx, void *mlx_win)
 			start_end.y = draw_end;
 
 			puts("Ratinho");
-			draw_vertical_line(img, x, &start_end, 0);
-			mlx_put_image_to_window(mlx, mlx_win, img->img, 0, 0);
+			draw_vertical_line(game->screen, x, &start_end, 0);
+			mlx_put_image_to_window(game->mlx, game->win, game->screen->img, 0, 0);
 		}
 	}
 }
 
-void bullshit(t_game *gam)
+/*int close_window(t_game *game)
 {
-	void 	*mlx;
-	void 	*mlx_win;
-	t_img	img;
+	free(game->map);
+	mlx_destroy_window(game->mlx, game->mlx_win);
+	mlx_destroy_image(game->mlx, game->img);
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
+	game->mlx = NULL;
+	exit(true);
+	return (true);
+}*/
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, w, h, "Cub3D");
+void bullshit(t_game *game)
+{
+	
+	game->screen = malloc(sizeof(t_img));
+	game->mlx = mlx_init();
+	game->win = mlx_new_window(game->mlx, w, h, "Cub3D");
 
-	img.img = mlx_new_image(mlx, w, h);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	game->screen->img = mlx_new_image(game->mlx, w, h);
+	game->screen->addr = mlx_get_data_addr(game->screen->img, &game->screen->bits_per_pixel, &game->screen->line_length, &game->screen->endian);
 
-	game(&img, gam, mlx, mlx_win);
-	mlx_loop(mlx);
+	run(game);
+	//mlx_hook(mlx_win, WIN_BUTTON_X, (1l << 17), close_window, &game);
+	mlx_loop(game->mlx);
 }
 
 int main(int argc, char *argv[])

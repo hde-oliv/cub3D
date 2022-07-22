@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 13:23:37 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/03/10 17:24:26 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/21 21:21:30 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,29 @@ typedef struct s_vector
 	double	y;
 }	t_vector;
 
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_img;
+
+
+
 typedef struct s_game
 {
+	int		init;
 	t_map	*map;
+	t_img	*img;
+	void	*mlx;
+	void	*win;
+	t_img	*screen;
+	t_img	*n_sprite;
+	t_img	*s_sprite;
+	t_img	*e_sprite;
+	t_img	*w_sprite;
 }	t_game;
 
 typedef enum e_element
@@ -58,6 +78,11 @@ typedef enum e_element
 	C,
 	F
 }	t_element;
+
+# define KEYPRESS 2
+# define KEYRELEASE 3
+# define ESC 0x00ff1b
+# define WIN_BUTTON_X 33
 
 //////////////////
 // Parse Module //
@@ -113,4 +138,8 @@ void	free_everything(t_game *game);
 void	print_element(char **tmp);
 void	print_map(t_list *lines);
 void	print_rows(char **rows);
+
+//close map
+int		close_window(t_game *gam);
+
 #endif
