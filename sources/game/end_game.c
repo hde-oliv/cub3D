@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   end.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/10 13:23:37 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/22 20:03:46 by hde-oliv         ###   ########.fr       */
+/*   Created: 2022/07/22 19:51:26 by hde-oliv          #+#    #+#             */
+/*   Updated: 2022/07/22 20:23:03 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-#include "libft.h"
 
-int main(int argc, char *argv[])
+int close_window(void *p)
 {
-	static t_game	game;
-	static t_map	map;
-	int				map_fd;
+	t_game *game;
 
-	if (argc != 2)
-		error(&game, "main");
-	if (!is_map(argv[1]))
-		error(&game, "is_map");
-	map_fd = open(argv[1], O_RDONLY);
-	if (map_fd == -1)
-		error(&game, "open");
-	game.map = &map;
-	parse_map(&game, map_fd);
-	initialize_game(&game);
-	run_game(&game);
-	return (0);
+	game = (t_game *)p;
+	mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_image(game->mlx, game->screen);
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
+	free_everything(game);
+	game->mlx = NULL;
+	exit(0);
 }

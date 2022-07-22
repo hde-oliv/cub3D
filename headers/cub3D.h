@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
+/*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 13:23:37 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/21 21:51:47 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/07/22 20:21:45 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,17 @@
 # include <math.h>
 # include "../libft/libft.h"
 # include "../minilibx/mlx.h"
+
+/////////////
+// Defines //
+/////////////
+
+# define KEYPRESS 2
+# define KEYRELEASE 3
+# define ESC 0x00ff1b
+# define WIN_BUTTON_X 17
+# define WIN_WIDTH 640
+# define WIN_HEIGHT 480
 
 /////////////
 // Structs //
@@ -48,23 +59,25 @@ typedef struct s_img
 {
 	void	*img;
 	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
+	int		bpp;
+	int		l_len;
 	int		endian;
 }	t_img;
 
 typedef struct s_game
 {
-	int		init;
-	t_map	*map;
-	t_img	*img;
-	void	*mlx;
-	void	*win;
-	t_img	*screen;
-	t_img	*n_sprite;
-	t_img	*s_sprite;
-	t_img	*e_sprite;
-	t_img	*w_sprite;
+	t_map		*map;
+	t_img		*img;
+	void		*mlx;
+	void		*win;
+	t_img		*screen;
+	t_img		*n_sprite;
+	t_img		*s_sprite;
+	t_img		*e_sprite;
+	t_img		*w_sprite;
+	t_vector	player;
+	t_vector	direction;
+	t_vector	plane;
 }	t_game;
 
 typedef enum e_element
@@ -76,11 +89,6 @@ typedef enum e_element
 	C,
 	F
 }	t_element;
-
-# define KEYPRESS 2
-# define KEYRELEASE 3
-# define ESC 0x00ff1b
-# define WIN_BUTTON_X 17
 
 //////////////////
 // Parse Module //
@@ -119,6 +127,26 @@ int		fetch_elements(t_map *map, int fd);
 int		look_checklist(int *checklist, t_element elem);
 int		update_checklist(int *checklist, t_element elem);
 
+/////////////////
+// Game Module //
+/////////////////
+
+// Initialize
+void	initialize_game(t_game *game);
+
+// Run
+void	run_game(t_game *game);
+
+// Utils
+void	put_pixel(t_img *img, int x, int y, int color);
+void	draw_vertical_line(t_img *img, int x, t_vector *start_end, int color);
+
+// Raycasting
+void	raycast(t_game *game);
+
+// End
+int		close_window(void *p);
+
 //////////////////
 // Error Module //
 //////////////////
@@ -136,7 +164,5 @@ void	free_everything(t_game *game);
 void	print_element(char **tmp);
 void	print_map(t_list *lines);
 void	print_rows(char **rows);
-
-//close map
 
 #endif

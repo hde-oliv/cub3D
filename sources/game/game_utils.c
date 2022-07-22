@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   game_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/10 13:23:37 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/22 20:03:46 by hde-oliv         ###   ########.fr       */
+/*   Created: 2022/07/22 19:24:22 by hde-oliv          #+#    #+#             */
+/*   Updated: 2022/07/22 20:24:05 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-#include "libft.h"
 
-int main(int argc, char *argv[])
+void	put_pixel(t_img *img, int x, int y, int color)
 {
-	static t_game	game;
-	static t_map	map;
-	int				map_fd;
+	char	*dst;
 
-	if (argc != 2)
-		error(&game, "main");
-	if (!is_map(argv[1]))
-		error(&game, "is_map");
-	map_fd = open(argv[1], O_RDONLY);
-	if (map_fd == -1)
-		error(&game, "open");
-	game.map = &map;
-	parse_map(&game, map_fd);
-	initialize_game(&game);
-	run_game(&game);
-	return (0);
+	dst = img->addr + (y * img->l_len + x * (img->bpp / 8));
+	*(unsigned int *)dst = color;
+}
+
+void	draw_vertical_line(t_img *img, int x, t_vector *start_end, int color)
+{
+	int	i;
+
+	i = start_end->x;
+	while (i < (int)start_end->y)
+	{
+		put_pixel(img, x, i, color);
+		i++;
+	}
 }
