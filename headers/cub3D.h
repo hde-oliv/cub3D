@@ -6,7 +6,7 @@
 /*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 13:23:37 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/21 21:21:30 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/07/21 21:51:47 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
-
-
 typedef struct s_game
 {
 	int		init;
@@ -82,7 +80,7 @@ typedef enum e_element
 # define KEYPRESS 2
 # define KEYRELEASE 3
 # define ESC 0x00ff1b
-# define WIN_BUTTON_X 33
+# define WIN_BUTTON_X 17
 
 //////////////////
 // Parse Module //
@@ -140,6 +138,5 @@ void	print_map(t_list *lines);
 void	print_rows(char **rows);
 
 //close map
-int		close_window(t_game *gam);
 
 #endif

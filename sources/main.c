@@ -6,7 +6,7 @@
 /*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 13:23:37 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/21 21:26:54 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/07/21 21:55:00 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,21 +172,22 @@ void run(t_game *game)
 	}
 }
 
-/*int close_window(t_game *game)
+int close_window(void *p)
 {
-	free(game->map);
-	mlx_destroy_window(game->mlx, game->mlx_win);
-	mlx_destroy_image(game->mlx, game->img);
+	t_game *game;
+
+	game = (t_game *)p;
+	mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_image(game->mlx, game->screen);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
+	free_everything(game);
 	game->mlx = NULL;
-	exit(true);
-	return (true);
-}*/
+	exit(0);
+}
 
 void bullshit(t_game *game)
 {
-	
 	game->screen = malloc(sizeof(t_img));
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, w, h, "Cub3D");
@@ -195,7 +196,7 @@ void bullshit(t_game *game)
 	game->screen->addr = mlx_get_data_addr(game->screen->img, &game->screen->bits_per_pixel, &game->screen->line_length, &game->screen->endian);
 
 	run(game);
-	//mlx_hook(mlx_win, WIN_BUTTON_X, (1l << 17), close_window, &game);
+	mlx_hook(game->win, WIN_BUTTON_X, 0, &close_window, game);
 	mlx_loop(game->mlx);
 }
 
