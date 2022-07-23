@@ -6,7 +6,7 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 13:23:37 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/23 18:12:20 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/23 18:29:23 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@
 # define A_KEY 97
 # define S_KEY 115
 # define D_KEY 100
+# define UP_KEY 65362
+# define DOWN_KEY 65364
+# define RIGHT_KEY 65361
+# define LEFT_KEY 65363
 # define ESC_KEY 65307
 # define X_BUTTON_EV 17
 # define NO_MASK 0L
@@ -143,6 +147,7 @@ void	initialize_game(t_game *game);
 
 // Run
 void	run_game(t_game *game);
+void	set_view(t_game *game);
 
 // Utils
 void	put_pixel(t_img *img, int x, int y, int color);
@@ -156,6 +161,13 @@ int		end_game(void *p);
 
 // Hooks
 void	set_hooks(t_game *game);
+
+// Movement
+void	move_player_forward(t_game *game);
+void	move_player_backward(t_game *game);
+void	move_player_left(t_game *game);
+void	move_player_right(t_game *game);
+
 
 //////////////////
 // Error Module //
