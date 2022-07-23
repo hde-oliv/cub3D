@@ -6,7 +6,7 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:09:53 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/23 18:12:34 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/23 18:26:32 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	handle_keys(int key, void *p)
 
 	game = (t_game *)p;
 	if (key == W_KEY)
-		move_player_up(game);
+		move_player_forward(game);
 	else if (key == S_KEY)
-		move_player_down(game);
+		move_player_backward(game);
 	else if (key == A_KEY)
 		move_player_left(game);
 	else if (key == D_KEY)
@@ -28,6 +28,7 @@ int	handle_keys(int key, void *p)
 	else if (key == ESC_KEY)
 		end_game(game);
 	printf("Pressed Key=%d\n", key);
+	set_view(game);
 	return (0);
 }
 
@@ -37,6 +38,15 @@ int	handle_buttons(void *p)
 
 	game = (t_game *)p;
 	end_game(game);
+	return (0);
+}
+
+int	handle_minimize(void *p)
+{
+	t_game	*game;
+
+	game = (t_game *) p;
+	set_view(game);
 	return (0);
 }
 
