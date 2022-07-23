@@ -6,7 +6,7 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 13:23:37 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/22 20:03:46 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/23 18:15:19 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ int main(int argc, char *argv[])
 	parse_map(&game, map_fd);
 	initialize_game(&game);
 	run_game(&game);
+	mlx_loop(game.mlx);
 	return (0);
 }
