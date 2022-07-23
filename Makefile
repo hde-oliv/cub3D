@@ -25,7 +25,7 @@ CFLAGS	+=	-Wall -Wextra -Werror
 IFLAGS	+=	-I.
 LFLAGS	+=	-L.
 TFLAGS	+=	-g3
-MFLAGS	+=	-lmlx_Linux -lXext -lX11 -lft
+MFLAGS	+=	-lmlx_Linux -lXext -lX11 -lft -lm
 
 RM		:=	rm -rf
 
