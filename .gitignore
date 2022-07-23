@@ -5,3 +5,4 @@ minilibx
 lodev
 *.a
 *.json
+.cache
