@@ -6,7 +6,7 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 13:23:37 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/23 18:02:37 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/23 18:12:20 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,10 @@ void	draw_vertical_line(t_img *img, int x, t_vector *start_end, int color);
 void	raycast(t_game *game);
 
 // End
-int		close_window(void *p);
+int		end_game(void *p);
+
+// Hooks
+void	set_hooks(t_game *game);
 
 //////////////////
 // Error Module //
