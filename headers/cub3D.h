@@ -6,7 +6,7 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 13:23:37 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/23 18:29:23 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/23 19:50:11 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,7 @@ void	initialize_game(t_game *game);
 // Run
 void	run_game(t_game *game);
 void	set_view(t_game *game);
+void	clear_view(t_game *game);
 
 // Utils
 void	put_pixel(t_img *img, int x, int y, int color);
