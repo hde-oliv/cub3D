@@ -6,7 +6,7 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 13:23:37 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/22 20:21:45 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/23 18:02:37 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,17 @@
 // Defines //
 /////////////
 
-# define KEYPRESS 2
-# define KEYRELEASE 3
-# define ESC 0x00ff1b
-# define WIN_BUTTON_X 17
+# define W_KEY 119
+# define A_KEY 97
+# define S_KEY 115
+# define D_KEY 100
+# define ESC_KEY 65307
+# define X_BUTTON_EV 17
+# define NO_MASK 0L
+# define KEY_PRESS_EV 2
+# define KEY_PRESS_MASK 1L
+# define FOCUS_EV 9
+# define FOCUS_MASK 2097152
 # define WIN_WIDTH 640
 # define WIN_HEIGHT 480
 
