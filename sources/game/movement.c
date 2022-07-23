@@ -6,7 +6,7 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:17:14 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/23 19:41:47 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/23 20:03:06 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void	move_player_left(t_game *game)
 	plane = game->plane;
 	old_dir_x = direction.x;
 	old_plane_x = plane.x;
-    direction.x = direction.x * cos(rotSpeed) - direction.y * sin(rotSpeed);
-    direction.y = old_dir_x * sin(rotSpeed) + direction.y * cos(rotSpeed);
-    plane.x = plane.x * cos(rotSpeed) - plane.y * sin(rotSpeed);
-    plane.y = old_plane_x * sin(rotSpeed) + plane.y * cos(rotSpeed);
+    game->direction.x = direction.x * cos(rotSpeed) - direction.y * sin(rotSpeed);
+    game->direction.y = old_dir_x * sin(rotSpeed) + direction.y * cos(rotSpeed);
+    game->plane.x = plane.x * cos(rotSpeed) - plane.y * sin(rotSpeed);
+    game->plane.y = old_plane_x * sin(rotSpeed) + plane.y * cos(rotSpeed);
 }
 
 void	move_player_right(t_game *game)
@@ -65,8 +65,8 @@ void	move_player_right(t_game *game)
 	plane = game->plane;
 	old_dir_x = direction.x;
 	old_plane_x = plane.x;
-    direction.x = direction.x * cos(-rotSpeed) - direction.y * sin(-rotSpeed);
-    direction.y = old_dir_x * sin(-rotSpeed) + direction.y * cos(-rotSpeed);
-    plane.x = plane.x * cos(-rotSpeed) - plane.y * sin(-rotSpeed);
-    plane.y = old_plane_x * sin(-rotSpeed) + plane.y * cos(-rotSpeed);
+    game->direction.x = direction.x * cos(-rotSpeed) - direction.y * sin(-rotSpeed);
+    game->direction.y = old_dir_x * sin(-rotSpeed) + direction.y * cos(-rotSpeed);
+    game->plane.x = plane.x * cos(-rotSpeed) - plane.y * sin(-rotSpeed);
+    game->plane.y = old_plane_x * sin(-rotSpeed) + plane.y * cos(-rotSpeed);
 }
