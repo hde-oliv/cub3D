@@ -6,7 +6,7 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 19:56:16 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/22 20:39:40 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/23 20:51:29 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void raycast(t_game *game)
 				map_y += step_y;
 				side = 1;
 			}
-			if (worldMap[map_x][map_y] > 0)
+			if ((game->map->rows)[map_x][map_y] > 0)
 				hit = 1;
 		}
 		if (side == 0)

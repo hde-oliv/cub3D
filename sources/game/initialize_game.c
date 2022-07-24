@@ -6,7 +6,7 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 19:36:33 by rike              #+#    #+#             */
-/*   Updated: 2022/07/22 20:49:09 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/23 21:04:51 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,12 @@ void initialize_game(t_game *game)
 	game->s_sprite = malloc(sizeof(t_img));
 	game->e_sprite = malloc(sizeof(t_img));
 	game->w_sprite = malloc(sizeof(t_img));
-	game->player.x = 22;
-	game->player.y = 12;
+	game->player.x = game->map->player_x;
+	game->player.y = game->map->player_y;
 	game->direction.x = -1;
 	game->direction.y = 0;
 	game->plane.x = 0;
 	game->plane.y = 0.66;
 	initialize_images(game);
+	convert_rows(game->map);
 }

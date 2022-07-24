@@ -6,7 +6,7 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 13:23:37 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/23 19:50:11 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/23 20:44:18 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct s_map
 	char	*c_color;
 	int		height;
 	int		width;
+	int		player_x;
+	int		player_y;
 	char	**rows;
 	t_list	*lines;
 }	t_map;
@@ -130,6 +132,9 @@ int		find_longest_line(t_list *lines);
 char	sub_space_for_plus(unsigned int i, char c);
 char	*string_create(char c, int size);
 void	create_rows(t_map *map, int l_line, int q_line);
+
+// Convert rows
+void	convert_rows(t_map *map);
 
 // Elements
 int		fetch_elements(t_map *map, int fd);

@@ -6,7 +6,7 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 15:10:14 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/03/11 15:10:15 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/23 20:48:33 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,28 @@ static int	validate_boundaries(char **rows, int rows_size, int row_size)
 	return (1);
 }
 
-static int	validate_player(char **rows)
+static int	validate_player(t_map *map)
 {
-	int	found;
-	int	i;
-	int	j;
+	int		found;
+	int		i;
+	int		j;
+	char	**rows;
 
 	i = 0;
 	j = 0;
 	found = 0;
+	rows = map->rows;
 	while (rows[i])
 	{
 		j = 0;
 		while (rows[i][j])
 		{
 			if (ft_strchr("NWSE", rows[i][j]))
+			{
+				map->player_x = i;
+				map->player_y = j;
 				found++;
+			}
 			j++;
 		}
 		i++;
@@ -123,7 +129,7 @@ int	validate_map(t_map *map)
 		return (0);
 	if (!validate_boundaries(map->rows, double_array_size(map->rows), l_line))
 		return (0);
-	if (!validate_player(map->rows))
+	if (!validate_player(map))
 		return (0);
 	return (1);
 }

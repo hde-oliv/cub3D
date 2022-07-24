@@ -6,7 +6,7 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 13:23:37 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/03/11 15:10:21 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/23 21:06:03 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,17 @@
 static void	cerror(const char *function)
 {
 	if (!ft_strncmp(function, "main", 5))
-		printf("main: Invalid number of arguments\n");
+		printf("%s: Invalid number of arguments\n", function);
 	else if (!ft_strncmp(function, "is_map", 7))
-		printf("is_map: Invalid map\n");
+		printf("%s: Invalid map\n", function);
 	else if (!ft_strncmp(function, "fetch_elements", 15))
-		printf("fetch_elements: Missing or invalid map element\n");
+		printf("%s: Missing or invalid map element\n", function);
 	else if (!ft_strncmp(function, "fetch_map", 9))
-		printf("fetch_map: Missing map\n");
+		printf("%s: Missing map\n", function);
 	else if (!ft_strncmp(function, "validate_elements", 17))
-		printf("validate_elements: Invalid color\n");
+		printf("%s: Invalid color\n", function);
+	else
+		printf("%s: Unknown error\n", function);
 }
 
 void	clear_gnl(int fd)

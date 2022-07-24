@@ -6,7 +6,7 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:17:14 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/23 20:03:06 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/23 20:52:04 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	move_player_forward(t_game *game)
 
 	next_x = game->player.x + game->direction.x * moveSpeed;
 	next_y = game->player.y + game->direction.y * moveSpeed;
-	if (worldMap[next_x][(int)game->player.y] == 0)
+	if ((game->map->rows)[next_x][(int)game->player.y] == 0)
 		game->player.x += game->direction.x * moveSpeed;
-	if (worldMap[(int)game->player.x][(int)next_y] == 0)		
+	if ((game->map->rows)[(int)game->player.x][(int)next_y] == 0)		
 		game->player.y += game->direction.y * moveSpeed;
 	return ;
 }
