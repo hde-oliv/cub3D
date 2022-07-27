@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 13:23:37 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/23 20:44:18 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/26 23:33:32 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@
 # define FOCUS_MASK 2097152
 # define WIN_WIDTH 640
 # define WIN_HEIGHT 480
+# define TEX_WIDTH 64
+# define TEX_HEIGHT 64
 
 /////////////
 // Structs //
@@ -80,7 +82,7 @@ typedef struct s_img
 typedef struct s_game
 {
 	t_map		*map;
-	t_img		*img;
+//	t_img		*img;
 	void		*mlx;
 	void		*win;
 	t_img		*screen;

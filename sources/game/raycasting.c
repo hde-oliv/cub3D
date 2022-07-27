@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 19:56:16 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/23 20:51:29 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/26 23:51:06 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int worldMap[24][24]=
 
 void raycast(t_game *game)
 {
-	t_vector start_end;
+	//t_vector start_end;
 
 	for (int x = 0; x < WIN_WIDTH; x++)
 	{
@@ -116,8 +116,39 @@ void raycast(t_game *game)
 		int draw_end = line_height / 2 + WIN_HEIGHT / 2;
 		if (draw_end >= WIN_HEIGHT)
 			draw_end = WIN_HEIGHT - 1;
-		start_end.x = draw_start;
-		start_end.y = draw_end;
-		draw_vertical_line(game->screen, x, &start_end, 0x0000FF00);
+		//include textures
+		double wallX;
+		if (side == 0) 
+			wallX = game->player.y + perp_wall_dist * ray_dir_y;
+		else
+			wallX = game->player.x + perp_wall_dist * ray_dir_x;
+		wallX -= (int)wallX;
+
+		int texX = (int)(wallX * (double)TEX_WIDTH);
+		if(side == 0 && ray_dir_x > 0)
+			texX = TEX_WIDTH - texX - 1;
+		if(side == 1 && ray_dir_y < 0)
+			texX = TEX_WIDTH - texX - 1;
+//choose texture
+		t_img *texture = game->n_sprite;
+
+		if(side == 1 && ray_dir_y < 0)
+			texture = game->w_sprite;
+		else if(side == 1)
+			texture = game->e_sprite;
+		else if(ray_dir_x > 0)
+			texture = game->s_sprite;	
+		//start_end.x = draw_start;
+		//start_end.y = draw_end;
+		//draw_vertical_line(game->screen, x, &start_end, 0x0000FF00);
+		double step = 1.0 * TEX_HEIGHT / line_height;
+		double texPos = (draw_start - WIN_HEIGHT / 2 + line_height / 2) * step;
+		for(int y = draw_start; y < draw_end; y++)
+		{
+			int texY = (int)texPos & (TEX_HEIGHT - 1);
+			texPos += step;
+			int color = texture->addr[texY * texture->l_len + texX * (texture->bpp / 8)];
+			put_pixel(game->screen, x, y, color);
+		}
 	}
 }
