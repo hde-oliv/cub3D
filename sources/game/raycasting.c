@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 19:56:16 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/28 20:04:21 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/28 20:34:11 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	get_b(int trgb)
 	return (trgb & 0xFF);
 }
 
-void raycast(t_game *game)
+void	raycast(t_game *game)
 {
 	//t_vector start_end;
 
@@ -163,16 +163,20 @@ void raycast(t_game *game)
 		//draw_vertical_line(game->screen, x, &start_end, 0x0000FF00);
 		double step = 1.0 * texture->height / line_height;
 		double texPos = (draw_start - WIN_HEIGHT / 2 + line_height / 2) * step;
-		for(int y = draw_start; y < draw_end; y++)
+		for (int y = draw_start; y < draw_end; y++)
 		{
+			int	texY;
+
 			int texY = (int)texPos & (texture->height - 1);
 			texPos += step;
-			int color = 0;
+			int	color;
+
+			color = 0;
 			if ((texY * texture->l_len + texX) > (texture->height * texture->height) - 1)
 				color = 0x00FF0000;
 			else
 				color = texture->addr[texY * texture->l_len + texX * (texture->bpp / 8)];
-			put_pixel(game, game->screen, x, y, color);
+			put_pixel(game->screen, x, y, color);
 		}
 	}
 }
