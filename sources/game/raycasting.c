@@ -6,7 +6,7 @@
 /*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 19:56:16 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/28 20:34:11 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/07/28 20:37:35 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ void	raycast(t_game *game)
 		{
 			int	texY;
 
-			int texY = (int)texPos & (texture->height - 1);
+			texY = (int)texPos & (texture->height - 1);
 			texPos += step;
 			int	color;
 

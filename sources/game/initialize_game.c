@@ -6,7 +6,7 @@
 /*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 19:36:33 by rike              #+#    #+#             */
-/*   Updated: 2022/07/28 20:20:57 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/07/28 20:36:56 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void		initialize_sprites(t_game *game);
 int			initialize_tex(t_game *game, t_img *sprite, char *path);
-static int	parse_rgb(char *rgb, int *color);
 void		initialize_colors(t_game *game);
 
 void	initialize_images(t_game *game)
@@ -85,18 +84,4 @@ void	initialize_colors(t_game *game)
 {
 	parse_rgb(game->map->c_color, &game->c_color);
 	parse_rgb(game->map->f_color, &game->f_color);
-}
-
-static int	parse_rgb(char *rgb, int *color)
-{
-	char	**rgb_splited;
-
-	rgb_splited = ft_split(rgb, ',');
-	if (!rgb_splited)
-		return (1);
-	*color = 0;
-	*color = 0xFF << 24 | ft_atoi(rgb_splited[0]) << 16
-		| ft_atoi(rgb_splited[1]) << 8 | ft_atoi(rgb_splited[2]);
-	ft_dfree(rgb_splited);
-	return (0);
 }

@@ -118,6 +118,7 @@ void	parse_map(t_game *game, int fd);
 int		is_number(char *number);
 int		double_array_size(char **array);
 int		is_map(char *arg);
+int		parse_rgb(char *rgb, int *color);
 
 // Validate elements
 int		validate_elements(t_map *map);
