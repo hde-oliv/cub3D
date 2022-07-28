@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize_game.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
+/*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 19:36:33 by rike              #+#    #+#             */
-/*   Updated: 2022/07/27 22:49:56 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/07/28 19:46:10 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void initialize_colors(t_game *game);
 void	initialize_images(t_game *game)
 {
 	game->screen->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HEIGHT);
-	game->screen->addr = mlx_get_data_addr(game->screen->img, 
+	game->screen->addr = (int *) mlx_get_data_addr(game->screen->img, 
 											&game->screen->bpp, \
 											&game->screen->l_len, \
 											&game->screen->endian);
@@ -53,7 +53,7 @@ int initialize_tex(t_game *game, t_img *sprite, char *path)
 	sprite->img = mlx_xpm_file_to_image(game->mlx, path, &sprite->width, &sprite->height);
 	if (!sprite->img)
 		return(1);
-	sprite->addr = mlx_get_data_addr(sprite->img, 
+	sprite->addr = (int *) mlx_get_data_addr(sprite->img, 
 											&sprite->bpp, \
 											&sprite->l_len, \
 											&sprite->endian);
@@ -89,26 +89,13 @@ void initialize_colors(t_game *game)
 
 static int parse_rgb(char *rgb, int *color)
 {
-	int		i;
-	int		sub_color;
 	char	**rgb_splited;
 
 	rgb_splited	= ft_split(rgb, ','); //0,255,154
 	if (!rgb_splited)
 		return(1);
-	i = 3;
 	*color = 0;
-	while(i > 0)
-	{
-		sub_color = ft_atoi(rgb_splited[3 - i]);
-		if (sub_color > 255 || sub_color < 0)
-		{
-			ft_dfree(rgb_splited);
-			return (1);
-		}
-		*color += pow(sub_color, i + 1);
-		i--;
-	}
+	*color = 0xFF << 24 | ft_atoi(rgb_splited[0]) << 16 | ft_atoi(rgb_splited[1]) << 8 | ft_atoi(rgb_splited[2]);
 	ft_dfree(rgb_splited);
 	return(0);
 }

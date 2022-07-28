@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
+/*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 19:56:16 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/27 22:57:10 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/07/28 20:04:21 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,26 @@ int worldMap[24][24]=
   {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
+
+int	get_t(int trgb)
+{
+	return ((trgb >> 24) & 0xFF);
+}
+
+int	get_r(int trgb)
+{
+	return ((trgb >> 16) & 0xFF);
+}
+
+int	get_g(int trgb)
+{
+	return ((trgb >> 8) & 0xFF);
+}
+
+int	get_b(int trgb)
+{
+	return (trgb & 0xFF);
+}
 
 void raycast(t_game *game)
 {
@@ -123,7 +143,7 @@ void raycast(t_game *game)
 		else
 			wallX = game->player.x + perp_wall_dist * ray_dir_x;
 		wallX -= (int)wallX;
-//choose texture
+		//choose texture
 		t_img *texture = game->n_sprite;
 
 		if(side == 1 && ray_dir_y < 0)
@@ -131,7 +151,8 @@ void raycast(t_game *game)
 		else if(side == 1)
 			texture = game->e_sprite;
 		else if(ray_dir_x > 0)
-			texture = game->s_sprite;	
+			texture = game->s_sprite;
+			
 		int texX = (int)(wallX * (double)texture->width);
 		if(side == 0 && ray_dir_x > 0)
 			texX = texture->width - texX - 1;
@@ -146,7 +167,11 @@ void raycast(t_game *game)
 		{
 			int texY = (int)texPos & (texture->height - 1);
 			texPos += step;
-			int color = texture->addr[texY * texture->l_len + texX * (texture->bpp / 8)];
+			int color = 0;
+			if ((texY * texture->l_len + texX) > (texture->height * texture->height) - 1)
+				color = 0x00FF0000;
+			else
+				color = texture->addr[texY * texture->l_len + texX * (texture->bpp / 8)];
 			put_pixel(game, game->screen, x, y, color);
 		}
 	}
