@@ -6,7 +6,7 @@
 /*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 13:23:37 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/26 23:33:32 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/07/27 22:59:08 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@
 # define FOCUS_MASK 2097152
 # define WIN_WIDTH 640
 # define WIN_HEIGHT 480
-# define TEX_WIDTH 64
-# define TEX_HEIGHT 64
 
 /////////////
 // Structs //
@@ -77,6 +75,8 @@ typedef struct s_img
 	int		bpp;
 	int		l_len;
 	int		endian;
+	int		height;
+	int		width;
 }	t_img;
 
 typedef struct s_game
@@ -93,6 +93,8 @@ typedef struct s_game
 	t_vector	player;
 	t_vector	direction;
 	t_vector	plane;
+	int			c_color;
+	int			f_color;
 }	t_game;
 
 typedef enum e_element
@@ -158,8 +160,8 @@ void	set_view(t_game *game);
 void	clear_view(t_game *game);
 
 // Utils
-void	put_pixel(t_img *img, int x, int y, int color);
-void	draw_vertical_line(t_img *img, int x, t_vector *start_end, int color);
+void	put_pixel(t_game *game, t_img *img, int x, int y, int color);
+void	draw_vertical_line(t_game *game, t_img *img, int x, t_vector *start_end, int color);
 
 // Raycasting
 void	raycast(t_game *game);

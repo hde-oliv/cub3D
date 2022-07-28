@@ -6,7 +6,7 @@
 /*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 19:36:33 by rike              #+#    #+#             */
-/*   Updated: 2022/07/26 23:32:59 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/07/27 22:49:56 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void initialize_sprites(t_game *game);
 int initialize_tex(t_game *game, t_img *sprite, char *path);
-
+static int parse_rgb(char *rgb, int *color);
+void initialize_colors(t_game *game);
 
 void	initialize_images(t_game *game)
 {
@@ -23,7 +24,9 @@ void	initialize_images(t_game *game)
 											&game->screen->bpp, \
 											&game->screen->l_len, \
 											&game->screen->endian);
-	// TODO: initialize textures	
+	printf("%d\n", game->screen->endian);
+	game->screen->height = WIN_HEIGHT;
+	game->screen->width = WIN_WIDTH;
 }
 
 // TODO: check for malloc errors
@@ -32,9 +35,7 @@ void initialize_sprites(t_game *game)
 {
 	int error;
 
-	//ft_memset(img, 0, sizeof(t_img) * 4):
 	error = 0;
-
 	error = error || initialize_tex(game, game->n_sprite, game->map->n_sprite);
 	error = error || initialize_tex(game, game->s_sprite, game->map->s_sprite);
 	error = error || initialize_tex(game, game->w_sprite, game->map->w_sprite);
@@ -48,21 +49,16 @@ void initialize_sprites(t_game *game)
 
 int initialize_tex(t_game *game, t_img *sprite, char *path)
 {
-	int h;
-	int w;
-
-	sprite->img = mlx_xpm_file_to_image(game->mlx, path, &w, &h);
+	
+	sprite->img = mlx_xpm_file_to_image(game->mlx, path, &sprite->width, &sprite->height);
 	if (!sprite->img)
 		return(1);
 	sprite->addr = mlx_get_data_addr(sprite->img, 
 											&sprite->bpp, \
 											&sprite->l_len, \
 											&sprite->endian);
-	printf("%d\n", sprite->bpp);
-	printf("%d %d\n", w, h);
 	return (0);
 }
-
 
 void initialize_game(t_game *game)
 {
@@ -79,7 +75,40 @@ void initialize_game(t_game *game)
 	game->direction.y = 0;
 	game->plane.x = 0;
 	game->plane.y = 0.66;
+	initialize_colors(game);
 	initialize_images(game);
 	initialize_sprites(game);
 	convert_rows(game->map);
+}
+
+void initialize_colors(t_game *game)
+{
+	parse_rgb(game->map->c_color, &game->c_color);
+	parse_rgb(game->map->f_color, &game->f_color);
+}
+
+static int parse_rgb(char *rgb, int *color)
+{
+	int		i;
+	int		sub_color;
+	char	**rgb_splited;
+
+	rgb_splited	= ft_split(rgb, ','); //0,255,154
+	if (!rgb_splited)
+		return(1);
+	i = 3;
+	*color = 0;
+	while(i > 0)
+	{
+		sub_color = ft_atoi(rgb_splited[3 - i]);
+		if (sub_color > 255 || sub_color < 0)
+		{
+			ft_dfree(rgb_splited);
+			return (1);
+		}
+		*color += pow(sub_color, i + 1);
+		i--;
+	}
+	ft_dfree(rgb_splited);
+	return(0);
 }

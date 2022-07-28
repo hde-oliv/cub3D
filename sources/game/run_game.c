@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_game.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 19:38:17 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/23 19:49:56 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/27 22:55:56 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,12 @@ void	clear_view(t_game *game)
 	start_end.y = WIN_HEIGHT;
 	while (i != -1)
 	{
-		draw_vertical_line(game->screen, i, &start_end, 0x00000000);
+		start_end.x = 0;
+		start_end.y = WIN_HEIGHT / 2;
+		draw_vertical_line(game, game->screen, i, &start_end, game->c_color);
+		start_end.x = WIN_HEIGHT / 2;
+		start_end.y = WIN_HEIGHT;
+		draw_vertical_line(game, game->screen, i, &start_end, game->f_color);
 		i--;
 	}
 }

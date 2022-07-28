@@ -6,7 +6,7 @@
 /*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 19:56:16 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/26 23:51:06 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/07/27 22:57:10 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,12 +123,6 @@ void raycast(t_game *game)
 		else
 			wallX = game->player.x + perp_wall_dist * ray_dir_x;
 		wallX -= (int)wallX;
-
-		int texX = (int)(wallX * (double)TEX_WIDTH);
-		if(side == 0 && ray_dir_x > 0)
-			texX = TEX_WIDTH - texX - 1;
-		if(side == 1 && ray_dir_y < 0)
-			texX = TEX_WIDTH - texX - 1;
 //choose texture
 		t_img *texture = game->n_sprite;
 
@@ -138,17 +132,22 @@ void raycast(t_game *game)
 			texture = game->e_sprite;
 		else if(ray_dir_x > 0)
 			texture = game->s_sprite;	
+		int texX = (int)(wallX * (double)texture->width);
+		if(side == 0 && ray_dir_x > 0)
+			texX = texture->width - texX - 1;
+		if(side == 1 && ray_dir_y < 0)
+			texX = texture->width - texX - 1;
 		//start_end.x = draw_start;
 		//start_end.y = draw_end;
 		//draw_vertical_line(game->screen, x, &start_end, 0x0000FF00);
-		double step = 1.0 * TEX_HEIGHT / line_height;
+		double step = 1.0 * texture->height / line_height;
 		double texPos = (draw_start - WIN_HEIGHT / 2 + line_height / 2) * step;
 		for(int y = draw_start; y < draw_end; y++)
 		{
-			int texY = (int)texPos & (TEX_HEIGHT - 1);
+			int texY = (int)texPos & (texture->height - 1);
 			texPos += step;
 			int color = texture->addr[texY * texture->l_len + texX * (texture->bpp / 8)];
-			put_pixel(game->screen, x, y, color);
+			put_pixel(game, game->screen, x, y, color);
 		}
 	}
 }
