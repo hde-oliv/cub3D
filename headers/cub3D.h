@@ -33,6 +33,7 @@
 # define RIGHT_KEY 65361
 # define LEFT_KEY 65363
 # define ESC_KEY 65307
+# define Q_KEY 113
 # define X_BUTTON_EV 17
 # define NO_MASK 0L
 # define KEY_PRESS_EV 2

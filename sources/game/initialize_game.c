@@ -6,7 +6,7 @@
 /*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 19:36:33 by rike              #+#    #+#             */
-/*   Updated: 2022/07/28 20:36:56 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/07/28 20:55:37 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	initialize_images(t_game *game)
 			&game->screen->bpp, \
 			&game->screen->l_len, \
 			&game->screen->endian);
-	printf("%d\n", game->screen->endian);
 	game->screen->height = WIN_HEIGHT;
 	game->screen->width = WIN_WIDTH;
 }
