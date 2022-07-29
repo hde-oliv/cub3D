@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   end_game.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 19:51:26 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/23 18:10:35 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/28 20:29:49 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int end_game(void *p)
+int	end_game(void *p)
 {
-	t_game *game;
+	t_game	*game;
 
 	game = (t_game *)p;
 	mlx_destroy_window(game->mlx, game->win);

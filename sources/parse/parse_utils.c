@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 13:23:37 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/03/11 15:10:06 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/28 20:38:49 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,19 @@ int	is_map(char *arg)
 	dot_location = ft_strrchr(arg, '.');
 	if (dot_location)
 		return (!ft_strncmp(dot_location, ".cub", 4));
+	return (0);
+}
+
+int	parse_rgb(char *rgb, int *color)
+{
+	char	**rgb_splited;
+
+	rgb_splited = ft_split(rgb, ',');
+	if (!rgb_splited)
+		return (1);
+	*color = 0;
+	*color = 0xFF << 24 | ft_atoi(rgb_splited[0]) << 16
+		| ft_atoi(rgb_splited[1]) << 8 | ft_atoi(rgb_splited[2]);
+	ft_dfree(rgb_splited);
 	return (0);
 }

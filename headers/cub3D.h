@@ -33,6 +33,7 @@
 # define RIGHT_KEY 65361
 # define LEFT_KEY 65363
 # define ESC_KEY 65307
+# define Q_KEY 113
 # define X_BUTTON_EV 17
 # define NO_MASK 0L
 # define KEY_PRESS_EV 2
@@ -118,6 +119,7 @@ void	parse_map(t_game *game, int fd);
 int		is_number(char *number);
 int		double_array_size(char **array);
 int		is_map(char *arg);
+int		parse_rgb(char *rgb, int *color);
 
 // Validate elements
 int		validate_elements(t_map *map);
@@ -160,8 +162,8 @@ void	set_view(t_game *game);
 void	clear_view(t_game *game);
 
 // Utils
-void	put_pixel(t_game *game, t_img *img, int x, int y, int color);
-void	draw_vertical_line(t_game *game, t_img *img, int x, t_vector *start_end, int color);
+void	put_pixel(t_img *img, int x, int y, int color);
+void	draw_vertical_line(t_img *img, int x, t_vector *start_end, int color);
 
 // Raycasting
 void	raycast(t_game *game);

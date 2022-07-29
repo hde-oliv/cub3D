@@ -6,7 +6,7 @@
 /*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:09:53 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/27 21:16:08 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/07/28 21:15:46 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	handle_keys(int key, void *p)
 		move_player_left(game);
 	else if (key == D_KEY)
 		move_player_right(game);
-	else if (key == ESC_KEY)
+	else if (key == ESC_KEY || key == Q_KEY)
 		end_game(game);
 	printf("Pressed Key=%d\n", key);
 	clear_view(game);
