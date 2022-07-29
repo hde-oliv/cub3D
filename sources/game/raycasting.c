@@ -6,7 +6,7 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 19:56:16 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/28 20:04:21 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/29 16:32:09 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,15 @@ int worldMap[24][24]=
   {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
+int	get_pixel_color(t_img *img, int x, int y, int width, int height)
+{
+	char	*dst;
+
+	if (x < 0 || x > width || y < 0 || y > height)
+		return (1);
+	dst = (char *)img->addr + (y * img->l_len + x * (img->bpp / 8));
+	return (*(unsigned int *)dst);
+}
 
 int	get_t(int trgb)
 {
@@ -136,6 +145,7 @@ void raycast(t_game *game)
 		int draw_end = line_height / 2 + WIN_HEIGHT / 2;
 		if (draw_end >= WIN_HEIGHT)
 			draw_end = WIN_HEIGHT - 1;
+
 		//include textures
 		double wallX;
 		if (side == 0) 
@@ -161,6 +171,7 @@ void raycast(t_game *game)
 		//start_end.x = draw_start;
 		//start_end.y = draw_end;
 		//draw_vertical_line(game->screen, x, &start_end, 0x0000FF00);
+
 		double step = 1.0 * texture->height / line_height;
 		double texPos = (draw_start - WIN_HEIGHT / 2 + line_height / 2) * step;
 		for(int y = draw_start; y < draw_end; y++)
@@ -168,10 +179,7 @@ void raycast(t_game *game)
 			int texY = (int)texPos & (texture->height - 1);
 			texPos += step;
 			int color = 0;
-			if ((texY * texture->l_len + texX) > (texture->height * texture->height) - 1)
-				color = 0x00FF0000;
-			else
-				color = texture->addr[texY * texture->l_len + texX * (texture->bpp / 8)];
+			color = get_pixel_color(texture, texX, texY, texture->height, texture->width);
 			put_pixel(game, game->screen, x, y, color);
 		}
 	}
