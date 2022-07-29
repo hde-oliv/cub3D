@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
+/*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 19:56:16 by hde-oliv          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/07/29 16:32:09 by hde-oliv         ###   ########.fr       */
-=======
-/*   Updated: 2022/07/28 20:37:35 by snovaes          ###   ########.fr       */
->>>>>>> origin/soraia
+/*   Updated: 2022/07/29 16:36:37 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,20 +180,9 @@ void	raycast(t_game *game)
 
 			texY = (int)texPos & (texture->height - 1);
 			texPos += step;
-<<<<<<< HEAD
 			int color = 0;
 			color = get_pixel_color(texture, texX, texY, texture->height, texture->width);
-			put_pixel(game, game->screen, x, y, color);
-=======
-			int	color;
-
-			color = 0;
-			if ((texY * texture->l_len + texX) > (texture->height * texture->height) - 1)
-				color = 0x00FF0000;
-			else
-				color = texture->addr[texY * texture->l_len + texX * (texture->bpp / 8)];
 			put_pixel(game->screen, x, y, color);
->>>>>>> origin/soraia
 		}
 	}
 }
