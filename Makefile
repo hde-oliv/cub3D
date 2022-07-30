@@ -5,12 +5,11 @@ OBJ_DIR :=	objects
 vpath %.c	sources			\
 			sources/parse	\
 			sources/error	\
-			sources/debug	\
 			sources/game
 
 SRC		:=	main.c \
 			error.c \
-			debug.c checklist.c convert_rows.c \
+			checklist.c convert_rows.c \
 			validate_elements.c elements.c validate_map_utils.c \
 			validate_map.c create_rows.c parse.c parse_utils.c \
 			end_game.c game_utils.c initialize_game.c \
