@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize_game.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
+/*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 19:36:33 by rike              #+#    #+#             */
-/*   Updated: 2022/07/28 20:55:37 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/07/30 16:16:02 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	initialize_game(t_game *game)
 	game->direction.y = 0;
 	game->plane.x = 0;
 	game->plane.y = 0.66;
+	game->move_speed = 0.4;
+	game->rot_speed = 0.2;
 	initialize_colors(game);
 	initialize_images(game);
 	initialize_sprites(game);
