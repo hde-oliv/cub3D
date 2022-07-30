@@ -6,7 +6,7 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:17:14 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/30 16:22:11 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/30 16:40:40 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	move_player_forward(t_game *game)
 void	move_player_backward(t_game *game)
 {
 	int	next_x;
-	int next_y;
+	int	next_y;
 
 	next_x = game->player.x - game->direction.x * game->move_speed;
 	next_y = game->player.y - game->direction.y * game->move_speed;
@@ -74,6 +74,8 @@ void	look_player_right(t_game *game)
 		* cos(-game->rot_speed) - direction.y * sin(-game->rot_speed);
 	game->direction.y = old_dir_x * sin(-game->rot_speed) \
 		+ direction.y * cos(-game->rot_speed);
-	game->plane.x = plane.x * cos(-game->rot_speed) - plane.y * sin(-game->rot_speed);
-	game->plane.y = old_plane_x * sin(-game->rot_speed) + plane.y * cos(-game->rot_speed);
+	game->plane.x = plane.x * cos(-game->rot_speed) \
+		- plane.y * sin(-game->rot_speed);
+	game->plane.y = old_plane_x * sin(-game->rot_speed) \
+		+ plane.y * cos(-game->rot_speed);
 }
