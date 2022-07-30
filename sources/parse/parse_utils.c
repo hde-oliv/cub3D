@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
+/*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 13:23:37 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/28 20:38:49 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/07/30 16:37:48 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ int	parse_rgb(char *rgb, int *color)
 
 	rgb_splited = ft_split(rgb, ',');
 	if (!rgb_splited)
-		return (1);
+		return (0);
 	*color = 0;
 	*color = 0xFF << 24 | ft_atoi(rgb_splited[0]) << 16
 		| ft_atoi(rgb_splited[1]) << 8 | ft_atoi(rgb_splited[2]);
 	ft_dfree(rgb_splited);
-	return (0);
+	return (1);
 }
