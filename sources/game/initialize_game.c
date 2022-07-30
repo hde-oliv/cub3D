@@ -6,30 +6,11 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 19:36:33 by rike              #+#    #+#             */
-/*   Updated: 2022/07/30 16:38:53 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/30 17:44:17 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-void	initialize_images(t_game *game)
-{
-	game->screen->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HEIGHT);
-	game->screen->addr = (int *) mlx_get_data_addr(game->screen->img,
-			&game->screen->bpp, \
-			&game->screen->l_len, \
-			&game->screen->endian);
-	game->screen->height = WIN_HEIGHT;
-	game->screen->width = WIN_WIDTH;
-	if (!initialize_texure(game, game->n_sprite, game->map->n_sprite))
-		error(game, "initialize_texture");
-	if (!initialize_texure(game, game->s_sprite, game->map->s_sprite))
-		error(game, "initialize_texture");
-	if (!initialize_texure(game, game->w_sprite, game->map->w_sprite))
-		error(game, "initialize_texture");
-	if (!initialize_texure(game, game->e_sprite, game->map->e_sprite))
-		error(game, "initialize_texture");
-}
 
 int	initialize_texture(t_game *game, t_img *sprite, char *path)
 {
@@ -42,6 +23,25 @@ int	initialize_texture(t_game *game, t_img *sprite, char *path)
 			&sprite->l_len, \
 			&sprite->endian);
 	return (1);
+}
+
+void	initialize_images(t_game *game)
+{
+	game->screen->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HEIGHT);
+	game->screen->addr = (int *) mlx_get_data_addr(game->screen->img,
+			&game->screen->bpp, \
+			&game->screen->l_len, \
+			&game->screen->endian);
+	game->screen->height = WIN_HEIGHT;
+	game->screen->width = WIN_WIDTH;
+	if (!initialize_texture(game, game->n_sprite, game->map->n_sprite))
+		error(game, "initialize_texture");
+	if (!initialize_texture(game, game->s_sprite, game->map->s_sprite))
+		error(game, "initialize_texture");
+	if (!initialize_texture(game, game->w_sprite, game->map->w_sprite))
+		error(game, "initialize_texture");
+	if (!initialize_texture(game, game->e_sprite, game->map->e_sprite))
+		error(game, "initialize_texture");
 }
 
 void	initialize_colors(t_game *game)
@@ -71,6 +71,5 @@ void	initialize_game(t_game *game)
 	game->rot_speed = 0.2;
 	initialize_colors(game);
 	initialize_images(game);
-	initialize_sprites(game);
 	convert_rows(game->map);
 }

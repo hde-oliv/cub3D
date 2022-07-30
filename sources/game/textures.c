@@ -6,11 +6,11 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 17:28:56 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/30 17:40:43 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/30 17:42:48 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3D.h"
 
 static t_img	*select_texture(t_game *game, t_raycaster *r)
 {

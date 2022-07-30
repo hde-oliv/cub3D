@@ -6,7 +6,7 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 19:24:22 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/30 17:39:12 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/30 17:47:40 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,16 @@ int	get_pixel_color(t_img *img, int x, int y)
 		return (1);
 	dst = (char *)img->addr + (y * img->l_len + x * (img->bpp / 8));
 	return (*(unsigned int *)dst);
+}
+
+void	draw_vertical_line(t_img *img, int x, t_dvector *start_end, int color)
+{
+	int	i;
+
+	i = start_end->x;
+	while (i < (int)start_end->y)
+	{
+		put_pixel(img, x, i, color);
+		i++;
+	}
 }

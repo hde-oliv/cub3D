@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_game.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
+/*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 19:38:17 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/28 20:15:43 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/07/30 17:46:39 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	set_view(t_game *game)
 void	clear_view(t_game *game)
 {
 	int			i;
-	t_vector	start_end;
+	t_dvector	start_end;
 
 	i = WIN_WIDTH;
 	start_end.x = 0;

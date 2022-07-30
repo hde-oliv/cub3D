@@ -194,6 +194,7 @@ void	clear_view(t_game *game);
 void	put_pixel(t_img *img, int x, int y, int color);
 int		get_pixel_color(t_img *img, int x, int y);
 void	initialize_raycaster_values(t_game *game, t_raycaster *r, int x);
+void	draw_vertical_line(t_img *img, int x, t_dvector *start_end, int color);
 
 // Raycasting
 void	raycast(t_game *game);

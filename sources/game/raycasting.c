@@ -6,7 +6,7 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 19:56:16 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/30 17:41:25 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/30 17:46:08 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ static void	cast_rays(t_game *game, t_raycaster *r, t_dvector *side_dist)
 	}
 }
 
-static void	set_wall_height(t_game *game, t_raycaster *r, t_dvector side_dist)
+static void	set_wall_height(t_raycaster *r, t_dvector *side_dist)
 {
 	if (r->side == 0)
-		r->wall_dist = (side_dist.x - r->delta_dist.x);
+		r->wall_dist = (side_dist->x - r->delta_dist.x);
 	else
-		r->wall_dist = (side_dist.y - r->delta_dist.y);
+		r->wall_dist = (side_dist->y - r->delta_dist.y);
 	r->line_height = (int)(WIN_HEIGHT / r->wall_dist);
 	r->draw_start = -r->line_height / 2 + WIN_HEIGHT / 2;
 	r->draw_end = r->line_height / 2 + WIN_HEIGHT / 2;
@@ -83,9 +83,9 @@ void	raycast(t_game *game)
 	r = (t_raycaster){};
 	while (++x < WIN_WIDTH)
 	{
-		initialize_values(game, &r, x);
+		initialize_raycaster_values(game, &r, x);
 		cast_rays(game, &r, &side_dist);
-		define_wall_height(game, &r, &side_dist);
+		set_wall_height(&r, &side_dist);
 		put_textures(game, &r, x);
 	}
 }
