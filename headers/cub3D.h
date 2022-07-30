@@ -63,11 +63,17 @@ typedef struct s_map
 	t_list	*lines;
 }	t_map;
 
-typedef struct s_vector
+typedef struct s_dvector
 {
 	double	x;
 	double	y;
-}	t_vector;
+}	t_dvector;
+
+typedef struct s_ivector
+{
+	int	x;
+	int	y;
+}	t_ivector;
 
 typedef struct s_img
 {
@@ -80,6 +86,27 @@ typedef struct s_img
 	int		width;
 }	t_img;
 
+typedef struct s_raycaster
+{
+	t_dvector	camera;
+	t_dvector	ray_dir;
+	t_dvector	delta_dist;
+	t_ivector	map;
+	t_ivector	step;
+	double		wall_dist;
+	int			hit;
+	int			side;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+	t_img 		*texture;
+	t_ivector	tex;
+	t_dvector	wall;
+	double		tex_step;
+	double		tex_pos;
+}	t_raycaster;
+
+
 typedef struct s_game
 {
 	t_map		*map;
@@ -91,11 +118,13 @@ typedef struct s_game
 	t_img		*s_sprite;
 	t_img		*e_sprite;
 	t_img		*w_sprite;
-	t_vector	player;
-	t_vector	direction;
-	t_vector	plane;
+	t_dvector	player;
+	t_dvector	direction;
+	t_dvector	plane;
 	int			c_color;
 	int			f_color;
+	double		move_speed;
+	double		rot_speed;
 }	t_game;
 
 typedef enum e_element
@@ -163,10 +192,14 @@ void	clear_view(t_game *game);
 
 // Utils
 void	put_pixel(t_img *img, int x, int y, int color);
-void	draw_vertical_line(t_img *img, int x, t_vector *start_end, int color);
+int		get_pixel_color(t_img *img, int x, int y);
+void	initialize_raycaster_values(t_game *game, t_raycaster *r, int x);
 
 // Raycasting
 void	raycast(t_game *game);
+
+// Texture
+void	put_textures(t_game *game, t_raycaster *r, int x);
 
 // End
 int		end_game(void *p);
@@ -177,8 +210,8 @@ void	set_hooks(t_game *game);
 // Movement
 void	move_player_forward(t_game *game);
 void	move_player_backward(t_game *game);
-void	move_player_left(t_game *game);
-void	move_player_right(t_game *game);
+void	look_player_left(t_game *game);
+void	look_player_right(t_game *game);
 
 
 //////////////////

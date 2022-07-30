@@ -6,7 +6,7 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:17:14 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/30 16:40:40 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/30 16:57:56 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	move_player_backward(t_game *game)
 
 void	look_player_left(t_game *game)
 {
-	t_vector	direction;
-	t_vector	plane;
+	t_dvector	direction;
+	t_dvector	plane;
 	double		old_dir_x;
 	double		old_plane_x;
 
@@ -61,8 +61,8 @@ void	look_player_left(t_game *game)
 
 void	look_player_right(t_game *game)
 {
-	t_vector	direction;
-	t_vector	plane;
+	t_dvector	direction;
+	t_dvector	plane;
 	double		old_dir_x;
 	double		old_plane_x;
 
