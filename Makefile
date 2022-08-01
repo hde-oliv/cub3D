@@ -8,7 +8,7 @@ vpath %.c	sources			\
 			sources/game
 
 SRC		:=	main.c \
-			error.c textures.c \
+			error.c textures.c initial_side.c \
 			checklist.c convert_rows.c \
 			validate_elements.c elements.c validate_map_utils.c \
 			validate_map.c create_rows.c parse.c parse_utils.c \

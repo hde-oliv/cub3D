@@ -215,6 +215,9 @@ void	move_player_backward(t_game *game);
 void	look_player_left(t_game *game);
 void	look_player_right(t_game *game);
 
+// Side
+void	set_initial_side(t_game *game, double radians);
+double	get_side_radians(t_game *game);
 
 //////////////////
 // Error Module //

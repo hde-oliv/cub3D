@@ -6,7 +6,7 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 19:36:33 by rike              #+#    #+#             */
-/*   Updated: 2022/07/31 21:24:38 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/31 21:38:55 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	initialize_game(t_game *game)
 	game->plane.y = 0.66;
 	game->move_speed = 0.4;
 	game->rot_speed = 0.2;
+	set_initial_side(game, get_side_radians(game));
 	initialize_colors(game);
 	initialize_images(game);
 	convert_rows(game->map);
