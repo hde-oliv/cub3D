@@ -111,7 +111,6 @@ typedef struct s_raycaster
 typedef struct s_game
 {
 	t_map		*map;
-//	t_img		*img;
 	void		*mlx;
 	void		*win;
 	t_img		*screen;
