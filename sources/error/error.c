@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
+/*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 13:23:37 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/27 22:01:11 by snovaes          ###   ########.fr       */
+/*   Updated: 2022/08/01 19:28:17 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	clear_gnl(int fd)
 
 void	free_everything(t_game *game)
 {
+	if (!game->map)
+		return ;
 	free(game->map->c_color);
 	free(game->map->f_color);
 	free(game->map->e_sprite);
