@@ -6,7 +6,7 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 19:38:17 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/30 17:46:39 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/31 21:18:57 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	run_game(t_game *game)
 
 void	set_view(t_game *game)
 {
+	clear_view(game);
 	raycast(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->screen->img, 0, 0);
 }

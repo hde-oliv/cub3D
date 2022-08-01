@@ -6,24 +6,21 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 17:28:56 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/30 17:42:48 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/31 21:14:30 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static t_img	*select_texture(t_game *game, t_raycaster *r)
+static void	select_texture(t_game *game, t_raycaster *r)
 {
-	t_img	*texture;
-
-	texture = game->n_sprite;
+	r->texture = game->n_sprite;
 	if (r->side == 1 && r->ray_dir.y < 0)
-		texture = game->w_sprite;
+		r->texture = game->w_sprite;
 	else if (r->side == 1)
-		texture = game->e_sprite;
+		r->texture = game->e_sprite;
 	else if (r->ray_dir.x > 0)
-		texture = game->s_sprite;
-	return (texture);
+		r->texture = game->s_sprite;
 }
 
 static void	texture_loop(t_game *game, t_raycaster *r, int x)
@@ -49,7 +46,7 @@ void	put_textures(t_game *game, t_raycaster *r, int x)
 	else
 		r->wall.x = game->player.x + r->wall_dist * r->ray_dir.x;
 	r->wall.x -= (int)r->wall.x;
-	r->texture = select_texture(game, r);
+	select_texture(game, r);
 	r->tex.x = (int)(r->wall.x * (double)r->texture->width);
 	if (r->side == 0 && r->ray_dir.x > 0)
 		r->tex.x = r->texture->width - r->tex.x - 1;

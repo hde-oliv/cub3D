@@ -6,7 +6,7 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 19:24:22 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/30 17:47:40 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/31 21:15:41 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	initialize_raycaster_values(t_game *game, t_raycaster *r, int x)
 	if (r->ray_dir.x == 0)
 		r->delta_dist.x = 10000000;
 	else
-		r->delta_dist.x = (1 / r->ray_dir.x);
+		r->delta_dist.x = fabs(1 / r->ray_dir.x);
 	if (r->ray_dir.y == 0)
 		r->delta_dist.y = 10000000;
 	else
-		r->delta_dist.y = (1 / r->ray_dir.y);
+		r->delta_dist.y = fabs(1 / r->ray_dir.y);
 }
 
 void	put_pixel(t_img *img, int x, int y, int color)

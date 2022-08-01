@@ -6,7 +6,7 @@
 /*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:09:53 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/30 16:22:38 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/31 21:15:46 by hde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	handle_keys(int key, void *p)
 		look_player_right(game);
 	else if (key == ESC_KEY || key == Q_KEY)
 		end_game(game);
-	printf("Pressed Key=%d\n", key);
+	//printf("Pressed Key=%d\n", key);
 	clear_view(game);
 	set_view(game);
 	return (0);

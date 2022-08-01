@@ -30,8 +30,8 @@
 # define D_KEY 100
 # define UP_KEY 65362
 # define DOWN_KEY 65364
-# define RIGHT_KEY 65361
-# define LEFT_KEY 65363
+# define LEFT_KEY 65361
+# define RIGHT_KEY 65363
 # define ESC_KEY 65307
 # define Q_KEY 113
 # define X_BUTTON_EV 17
@@ -91,6 +91,7 @@ typedef struct s_raycaster
 	t_dvector	camera;
 	t_dvector	ray_dir;
 	t_dvector	delta_dist;
+	t_dvector	side_dist;
 	t_ivector	map;
 	t_ivector	step;
 	double		wall_dist;
