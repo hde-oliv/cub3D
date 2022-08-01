@@ -13,7 +13,7 @@ SRC		:=	main.c \
 			validate_elements.c elements.c validate_map_utils.c \
 			validate_map.c create_rows.c parse.c parse_utils.c \
 			end_game.c game_utils.c initialize_game.c \
-			raycasting.c run_game.c hooks.c movement.c \
+			raycasting.c run_game.c hooks.c movement.c movement_look.c\
 
 OBJS	:=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 INCLS   :=	$(INC_DIR)

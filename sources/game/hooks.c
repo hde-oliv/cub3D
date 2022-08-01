@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:09:53 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/31 21:15:46 by hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/07/31 23:23:35 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,16 @@ int	handle_keys(int key, void *p)
 		move_player_forward(game);
 	else if (key == S_KEY)
 		move_player_backward(game);
+	else if (key == A_KEY)
+		move_player_right(game);
+	else if (key == D_KEY)
+		move_player_left(game);
 	else if (key == LEFT_KEY)
 		look_player_left(game);
 	else if (key == RIGHT_KEY)
 		look_player_right(game);
 	else if (key == ESC_KEY || key == Q_KEY)
 		end_game(game);
-	//printf("Pressed Key=%d\n", key);
 	clear_view(game);
 	set_view(game);
 	return (0);
