@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hde-oliv <hde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: snovaes <snovaes@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 13:23:37 by hde-oliv          #+#    #+#             */
-/*   Updated: 2022/07/28 19:27:04hde-oliv         ###   ########.fr       */
+/*   Updated: 2022/08/17 21:01:00 by snovaes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,12 @@ typedef struct s_raycaster
 	int			line_height;
 	int			draw_start;
 	int			draw_end;
-	t_img 		*texture;
+	t_img		*texture;
 	t_ivector	tex;
 	t_dvector	wall;
 	double		tex_step;
 	double		tex_pos;
 }	t_raycaster;
-
 
 typedef struct s_game
 {
