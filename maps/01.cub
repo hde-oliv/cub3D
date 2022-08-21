@@ -1,4 +1,6 @@
-F 156,17,96
+
+F 184,113,39
+C 51,198,227
 NO ./maps/xpm/no_redbrick.xpm
 SO ./maps/xpm/so_redbrick.xpm
 
@@ -13,7 +15,6 @@ EA ./maps/xpm/ea_redbrick.xpm
 
 
 WE                                                ./maps/xpm/we_redbrick.xpm
-                                                                     C 50,160,82
            11111111111111111
 11111111111100001   101
 10000000000000001  1101
