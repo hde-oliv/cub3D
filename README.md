@@ -8,7 +8,7 @@
 
 ## What is it?
 This project is inspired by the famous [Wolfenstein 3D](https://en.wikipedia.org/wiki/Wolfenstein_3D) game, which was the first FPS ever.  
-A simple raycaster, made with C and utilizing a custom-made graphics library called MiniLibX, a basic wrapper for the [X Window System](https://pt.wikipedia.org/wiki/X_Window_System).  
+A simple ray caster, made with C and utilizing a custom-made graphics library called MiniLibX, a basic wrapper for the [X Window System](https://pt.wikipedia.org/wiki/X_Window_System).  
 
 **Succeeded with 100%**
 
@@ -29,7 +29,7 @@ sudo apt install libx11-dev xorg-dev libbsd-dev gcc
 
 After compiling it, you'll need a map (just a text file) with the extension `.cub` with the following configuration:
 
-- The map must be composed of only 6 possible characters: 0 for an empty space, 1 for a wall, and N,S,E or W for the player’s start position and spawning orientation. ex:
+- The map must be composed of only 6 possible characters: 0 for an empty space, 1 for a wall, and N,S,E or W for the player’s start position and spawning orientation. Ex:
 
 		111111
 		100101
@@ -42,7 +42,7 @@ After compiling it, you'll need a map (just a text file) with the extension `.cu
 - Except for the map content which always has to be the last, each type of element can be set in any order in the file.
 -  Except for the map, each type of information from an element can be separated by one or more space(s).
 - Spaces are a valid part of the map.
-- Each element (except the map) firsts information is the type identifier (composed by one or two character(s)), followed by all specific informations for each object in a strict order such as:
+- Each element (except the map)'s first piece of information is the type identifier (composed by one or two characters), followed by all specific information for each object in a strict order, such as:
   - North texture:
 	NO ./path_to_the_north_texture
   - South texture:
@@ -83,7 +83,7 @@ C 225,30,0
 11110111 1110101 101111010001
 11111111 1111111 111111111111
  ```
-The folder `maps`, has more examples.  
+The folder `maps` have more examples.  
 
 Then, run the binary providing the map's path.
 ``` sh
@@ -102,3 +102,4 @@ Feel free to contact me or create an issue!
 
 ## License
 This project is licensed under the GNU General Public License v3.0 - see the [COPYING](https://github.com/hde-oliv/cub3D/blob/master/COPYING) file for details.
+
